@@ -5,6 +5,7 @@ import Create from './components/Create/Create';
 import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Details from './components/Details/Details';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/logout" element={<Home />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/games" element={<Catalog />} />
+                    <Route path="/details/:gameId" element={<Details />} />
                 </Routes>
             </main>
         </div>
