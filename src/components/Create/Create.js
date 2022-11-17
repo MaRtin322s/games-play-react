@@ -17,8 +17,12 @@ const Create = () => {
     const createHandler = (ev) => {
         ev.preventDefault();
 
-        gameService.createGame(auth.accessToken, values)
-            .then(() => navigate('/'));
+        if (Object.values(values).some(x => x == '')) {
+            alert('All strings are required!');
+        } else {
+            gameService.createGame(auth.accessToken, values)
+                .then(() => navigate('/'));
+        }
     }
 
     const changeHandler = (ev) => {

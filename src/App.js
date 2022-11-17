@@ -8,6 +8,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Details from './components/Details/Details';
+import Edit from './components/Edit/Edit';
 import { useLocalStorage } from './components/hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
 
@@ -30,6 +31,8 @@ function App() {
                             <Route path="/create" element={<Create />} />
                             <Route path="/games" element={<Catalog />} />
                             <Route path="/details/:gameId" element={<Details />} />
+                            <Route path="/details/:gameId/edit" element={<Edit />} />
+                            <Route path="/details/:gameId/delete" element={<Details />} />
                         </Routes>
                     </GameContext.Provider>
                 </main>

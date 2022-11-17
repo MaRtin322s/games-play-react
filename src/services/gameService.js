@@ -16,3 +16,15 @@ export const createGame = (accessToken, gameData) => {
     })
         .then(res => res.json());
 }
+
+export const editGame = (gameId, userData, accessToken) => {
+    return fetch(`${baseUrl}/games/${gameId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': accessToken
+        },
+        body: JSON.stringify(userData)
+    })
+        .then(res => res.json());
+}

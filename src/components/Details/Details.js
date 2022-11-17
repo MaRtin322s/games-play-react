@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { GameContext } from '../../context/GameContext';
 import * as gameService from '../../services/gameService';
 
@@ -10,7 +10,7 @@ const Details = () => {
     useEffect(() => {
         gameService.getOne(gameId)
             .then(game => setCurrentGame(game));
-    }, [])
+    }, []);
 
     return (
         <section id="game-details">
@@ -38,12 +38,12 @@ const Details = () => {
                 </div>
                 {currentGame._ownerId === auth._id
                     ? <div className="buttons">
-                        <a href="#" className="button">
+                        <Link to={`/details/${currentGame._id}/edit`} className="button">
                             Edit
-                        </a>
-                        <a href="#" className="button">
+                        </Link>
+                        <Link to={`/details/${currentGame._id}/delete`} className="button">
                             Delete
-                        </a>
+                        </Link>
                     </div>
                     : null
                 }
