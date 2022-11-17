@@ -15,12 +15,17 @@ const Register = () => {
     const registerHandler = (ev) => {
         ev.preventDefault();
 
-        if (values.password === values['confirm-password']) {
+        if (Object.values(values).some(x => x == '')) {
+            alert('All fields are required!');
+        } else if (values.password !== values['confirm-password']) {
+            alert('Passwords missmatch detected!');
+        } else {
             authService.registerUser(values)
                 .then(user => {
                     userLogin(user);
                     navigate('/', { replace: true });
-                });
+                })
+                .catch(err => alert(err.message));
         }
     }
 

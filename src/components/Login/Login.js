@@ -14,11 +14,16 @@ const Login = () => {
     const loginHandler = (ev) => {
         ev.preventDefault();
 
-        authService.loginUser(values)
-            .then(user => {
-                userLogin(user);
-                navigate('/', { replace: true });
-            });
+        if (Object.values(values).some(x => x == '')) {
+            alert('All fields are required!');
+        } else {
+            authService.loginUser(values)
+                .then(user => {
+                    userLogin(user);
+                    navigate('/', { replace: true });
+                })
+                .catch(err => alert(err.message));
+        }
     }
 
     const changeHandler = (ev) => {
@@ -27,7 +32,7 @@ const Login = () => {
             [ev.target.name]: ev.target.value
         }));
     }
-    
+
     return (
         <section id="login-page" className="auth">
             <form id="login" onSubmit={(ev) => loginHandler(ev)}>
