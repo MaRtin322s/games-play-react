@@ -27,9 +27,7 @@ const Login = () => {
             [ev.target.name]: ev.target.value
         }));
     }
-
-
-
+    
     return (
         <section id="login-page" className="auth">
             <form id="login" onSubmit={(ev) => loginHandler(ev)}>
