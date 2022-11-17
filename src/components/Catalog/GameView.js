@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
-const GameView = () => {
+const GameView = ({ game }) => {
     return (
         <div className="allGames">
             <div className="allGames-info">
-                <img src="./images/avatar-1.jpg" />
-                <h6>Action</h6>
-                <h2>Cover Fire</h2>
-                <Link to="" className="details-button">Details</Link>
+                <img src={game.imageUrl} />
+                <h6>{game.category}</h6>
+                <h2>{game.title}</h2>
+                <Link to={`/details/${game._id}`} className="details-button">Details</Link>
             </div>
         </div>
     );
