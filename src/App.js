@@ -9,27 +9,19 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Details from './components/Details/Details';
 import { useLocalStorage } from './components/hooks/useLocalStorage';
-import * as gameService from './services/gameService';
 import Logout from './components/Logout/Logout';
-import { useEffect, useState } from 'react';
 
 function App() {
     const [auth, setAuth] = useLocalStorage('auth', {});
-    const [games, setGames] = useState([]);
     const userLogin = (userData) => setAuth(userData);
     const userLogout = () => setAuth({});
-
-    useEffect(() => {
-        gameService.getAll()
-            .then(games => setGames(games));
-    }, []);
 
     return (
         <AuthContext.Provider value={{ user: auth, userLogin, userLogout }}>
             <div id="box">
                 <Header />
                 <main id="main-content">
-                    <GameContext.Provider value={{ games, auth }}>
+                    <GameContext.Provider value={{ auth }}>
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/login" element={<Login />} />

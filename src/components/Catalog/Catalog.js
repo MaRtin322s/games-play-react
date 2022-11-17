@@ -1,9 +1,14 @@
-import { useContext } from "react";
-import { GameContext } from "../../context/GameContext";
+import { useState, useEffect } from 'react';
+import * as gameService from '../../services/gameService';
 import GameView from "./GameView";
 
 const Catalog = () => {
-    const { games } = useContext(GameContext);
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        gameService.getAll()
+            .then(games => setGames(games));
+    }, []);
 
     return (
         <section id="catalog-page">
