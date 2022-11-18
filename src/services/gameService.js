@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/data';
+const baseUrl = 'https://games-play-api.herokuapp.com/data';
 
 export const getAll = () => fetch(`${baseUrl}/games`).then(res => res.json());
 export const getOne = (gameId) => fetch(`${baseUrl}/games/${gameId}`).then(res => res.json());
@@ -40,7 +40,7 @@ export const deleteGame = (gameId, accessToken) => {
 }
 
 export const getAllComments = (gameId) => 
-    fetch(`http://localhost:3030/data/comments?where=gameId%3D%22${gameId}%22`).then(res => res.json());
+    fetch(`${baseUrl}/comments?where=gameId%3D%22${gameId}%22`).then(res => res.json());
 
 export const createComment = (comment, accessToken) => {
     return fetch(`${baseUrl}/comments`, {
