@@ -38,3 +38,18 @@ export const deleteGame = (gameId, accessToken) => {
     })
         .then(res => res.json());
 }
+
+export const getAllComments = (gameId) => 
+    fetch(`http://localhost:3030/data/comments?where=gameId%3D%22${gameId}%22`).then(res => res.json());
+
+export const createComment = (comment, accessToken) => {
+    return fetch(`${baseUrl}/comments`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': accessToken
+        },
+        body: JSON.stringify(comment)
+    })
+        .then(res => res.json());
+}
