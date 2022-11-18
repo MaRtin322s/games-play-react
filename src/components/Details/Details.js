@@ -12,6 +12,10 @@ const Details = () => {
             .then(game => setCurrentGame(game));
     }, []);
 
+    const commentHandler = () => {
+
+    }
+    
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -48,23 +52,25 @@ const Details = () => {
                     : null
                 }
             </div>
-            {/* Bonus */}
-            {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
-            <article className="create-comment">
-                <label>Add new comment:</label>
-                <form className="form">
-                    <textarea
-                        name="comment"
-                        placeholder="Comment......"
-                        defaultValue={""}
-                    />
-                    <input
-                        className="btn submit"
-                        type="submit"
-                        defaultValue="Add Comment"
-                    />
-                </form>
-            </article>
+
+            {currentGame._ownerId !== auth._id && auth.accessToken
+                ? <article className="create-comment">
+                    <label>Add new comment:</label>
+                    <form className="form" onSubmit={(ev) => commentHandler(ev)}>
+                        <textarea
+                            name="comment"
+                            placeholder="Comment......"
+                            defaultValue={""}
+                        />
+                        <input
+                            className="btn submit"
+                            type="submit"
+                            defaultValue="Add Comment"
+                        />
+                    </form>
+                </article>
+                : null        
+            }
         </section>
     );
 }

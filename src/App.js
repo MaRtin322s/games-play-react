@@ -11,6 +11,7 @@ import Details from './components/Details/Details';
 import Edit from './components/Edit/Edit';
 import { useLocalStorage } from './components/hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
+import Delete from './components/Delete/Delete';
 
 function App() {
     const [auth, setAuth] = useLocalStorage('auth', {});
@@ -32,7 +33,7 @@ function App() {
                             <Route path="/games" element={<Catalog />} />
                             <Route path="/details/:gameId" element={<Details />} />
                             <Route path="/details/:gameId/edit" element={<Edit />} />
-                            <Route path="/details/:gameId/delete" element={<Details />} />
+                            <Route path="/details/:gameId/delete" element={<Delete />} />
                         </Routes>
                     </GameContext.Provider>
                 </main>

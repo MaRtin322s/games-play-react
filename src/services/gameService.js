@@ -28,3 +28,13 @@ export const editGame = (gameId, userData, accessToken) => {
     })
         .then(res => res.json());
 }
+
+export const deleteGame = (gameId, accessToken) => {
+    return fetch(`${baseUrl}/games/${gameId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': accessToken,
+        }
+    })
+        .then(res => res.json());
+}
