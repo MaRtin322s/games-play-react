@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react';
 import * as gameService from '../../services/gameService';
+import SpinnerComponent from '../Spinner/Spinner';
 import GameView from './GameView';
 
 const Home = () => {
     const [lastGames, setLastGames] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
+        setIsLoading(true)
         gameService.getLastGames()
-            .then(games => setLastGames(games.slice(0, 3)));
+            .then(games => {
+                setLastGames(games.slice(0, 3));
+                setIsLoading(false);
+            });
     }, []);
 
     return (
@@ -19,9 +25,11 @@ const Home = () => {
             <img src="./images/four_slider_img01.png" alt="hero" />
             <div id="home-page">
                 <h1>Latest Games</h1>
-                {lastGames.length > 0
-                    ? lastGames.map(game => <GameView key={game._id} game={game} />)
-                    : <p className="no-articles">No games yet</p>
+                {isLoading ?
+                    <SpinnerComponent />
+                    : (lastGames.length > 0
+                        ? lastGames.map(game => <GameView key={game._id} game={game} />)
+                        : <p className="no-articles">No games yet</p>)
                 }
             </div>
         </section>
